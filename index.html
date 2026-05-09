@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+  <title>منارة العلم | منصة التعليم الذكي للمنهج المصري</title>
+  <!-- Google Fonts for Arabic typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Almarai:wght@400;700;800&family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <!-- Font Awesome 6 for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Cairo', 'Almarai', 'Tajawal', sans-serif;
+      background: linear-gradient(145deg, #0b1120 0%, #111827 100%);
+      min-height: 100vh;
+      color: #e5e7eb;
+      line-height: 1.7;
+      direction: rtl;
+      padding: 1.5rem;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    :root {
+      --primary: #f59e0b;
+      --primary-glow: rgba(245, 158, 11, 0.3);
+      --dark-bg: #0b1120;
+      --card-bg: #111827;
+      --text-light: #e5e7eb;
+      --text-muted: #9ca3af;
+      --accent-blue: #3b82f6;
+    }
+    /* header / navigation */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.2rem 0;
+      flex-wrap: wrap;
+      gap: 1rem;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .logo {
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: white;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .logo i {
+      color: var(--primary);
+      font-size: 2rem;
+    }
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 2rem;
+      font-weight: 600;
+      color: #ccc;
+    }
+    .nav-links a {
+      color: #ccc;
+      text-decoration: none;
+      transition: 0.2s;
+    }
+    .nav-links a:hover {
+      color: var(--primary);
+    }
+    .btn-primary {
+      background: var(--primary);
+      color: #0b1120;
+      font-weight: 700;
+      padding: 0.7rem 1.8rem;
+      border-radius: 40px;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: all 0.3s;
+      border: none;
+      cursor: pointer;
+      font-family: inherit;
+      font-size: 1rem;
+    }
+    .btn-primary:hover {
+      background: #fbbf24;
+      box-shadow: 0 0 20px var(--primary-glow);
+      transform: translateY(-2px);
+    }
+    .btn-outline {
+      background: transparent;
+      border: 2px solid var(--primary);
+      color: var(--primary);
+      font-weight: 700;
+      padding: 0.65rem 2rem;
+      border-radius: 40px;
+      text-decoration: none;
+      transition: 0.3s;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    .btn-outline:hover {
+      background: var(--primary);
+      color: #0b1120;
+    }
+    /* hero */
+    .hero {
+      padding: 3rem 0 2rem;
+      text-align: center;
+    }
+    .hero h1 {
+      font-size: 2.8rem;
+      font-weight: 800;
+      color: white;
+      line-height: 1.4;
+      margin-bottom: 1rem;
+    }
+    .hero .highlight {
+      color: var(--primary);
+    }
+    .hero p {
+      font-size: 1.25rem;
+      color: #9ca3af;
+      max-width: 750px;
+      margin: 0 auto 2rem;
+    }
+    .stats-bar {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 2.5rem;
+      background: rgba(255,255,255,0.03);
+      backdrop-filter: blur(8px);
+      border-radius: 20px;
+      padding: 1.5rem 2rem;
+      margin: 2rem auto 0;
+      max-width: 800px;
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+    .stat-item {
+      text-align: center;
+    }
+    .stat-number {
+      font-size: 2rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #c084fc, #60a5fa);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+    .stat-label {
+      color: #9ca3af;
+      font-size: 0.9rem;
+    }
+    /* section titles */
+    .section-title {
+      text-align: center;
+      margin: 4rem 0 2rem;
+    }
+    .section-title h2 {
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: white;
+    }
+    .section-title p {
+      color: #9ca3af;
+    }
+    /* features grid */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.8rem;
+      margin: 2rem 0;
+    }
+    .feature-card {
+      background: rgba(255,255,255,0.04);
+      backdrop-filter: blur(10px);
+      border-radius: 24px;
+      padding: 2rem 1.5rem;
+      border: 1px solid rgba(255,255,255,0.06);
+      transition: 0.25s;
+      text-align: center;
+    }
+    .feature-card:hover {
+      border-color: var(--primary);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+    }
+    .feature-icon {
+      font-size: 2.5rem;
+      color: var(--primary);
+      margin-bottom: 1rem;
+    }
+    .feature-card h3 {
+      font-size: 1.4rem;
+      color: white;
+      margin-bottom: 0.8rem;
+    }
+    .feature-card p {
+      color: #9ca3af;
+      font-size: 0.95rem;
+    }
+    /* Testimonial cards */
+    .testimonial-card {
+      background: rgba(255,255,255,0.04);
+      backdrop-filter: blur(8px);
+      border-radius: 20px;
+      padding: 2rem;
+      text-align: center;
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+    .stars {
+      color: var(--primary);
+      margin: 0.8rem 0;
+    }
+    .student-name {
+      color: white;
+      font-weight: 700;
+      margin-top: 1rem;
+    }
+    /* contact */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.5rem;
+      margin: 2rem 0 4rem;
+    }
+    .contact-card {
+      background: rgba(255,255,255,0.04);
+      backdrop-filter: blur(8px);
+      padding: 2rem;
+      border-radius: 20px;
+      text-align: center;
+      border: 1px solid rgba(255,255,255,0.05);
+    }
+    .contact-card i {
+      font-size: 2rem;
+      color: var(--primary);
+      margin-bottom: 0.8rem;
+    }
+    .footer {
+      border-top: 1px solid rgba(255,255,255,0.08);
+      padding: 2rem 0;
+      text-align: center;
+      color: #6b7280;
+    }
+    /* ---------- WIZARD (integrated) ---------- */
+    .wizard-wrapper {
+      max-width: 800px;
+      margin: 0 auto 3rem;
+    }
+    .wizard-card {
+      background: rgba(18, 28, 40, 0.9);
+      backdrop-filter: blur(20px);
+      border-radius: 2.5rem;
+      padding: 2.2rem 2rem;
+      box-shadow: 0 30px 45px -15px rgba(0,0,0,0.6);
+      border: 1px solid rgba(255,255,255,0.12);
+    }
+    .step-badge {
+      display: inline-block;
+      background: #2d3a5e;
+      padding: 0.3rem 1.1rem;
+      border-radius: 40px;
+      font-size: 0.8rem;
+      margin-bottom: 1.5rem;
+      color: #a5f3fc;
+    }
+    .step-title {
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+      border-right: 4px solid var(--accent-blue);
+      padding-right: 1rem;
+      color: white;
+    }
+    .options-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin: 1.5rem 0;
+    }
+    .option-btn {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.18);
+      padding: 1rem 1.2rem;
+      border-radius: 1.3rem;
+      font-size: 1.1rem;
+      font-weight: 600;
+      text-align: right;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      cursor: pointer;
+      transition: all 0.2s;
+      color: #f1f5f9;
+    }
+    .option-btn:hover {
+      background: rgba(59,130,246,0.25);
+      border-color: var(--accent-blue);
+      transform: translateX(-5px);
+    }
+    .back-btn, .reset-btn {
+      background: rgba(100,116,139,0.35);
+      border: none;
+      padding: 0.7rem 1.5rem;
+      border-radius: 2rem;
+      font-weight: 600;
+      cursor: pointer;
+      margin-top: 1rem;
+      color: #cbd5e6;
+      transition: 0.2s;
+      font-family: inherit;
+    }
+    .back-btn:hover, .reset-btn:hover {
+      background: #475569;
+      color: white;
+    }
+    .confirm-btn {
+      background: linear-gradient(95deg, #2563eb, #4f46e5);
+      border: none;
+      padding: 0.9rem 1.8rem;
+      border-radius: 2rem;
+      font-weight: 800;
+      font-size: 1rem;
+      color: white;
+      cursor: pointer;
+      width: 100%;
+      margin-top: 1.8rem;
+      transition: 0.2s;
+    }
+    .selection-info {
+      background: rgba(255,255,255,0.04);
+      border-radius: 1.2rem;
+      padding: 0.8rem;
+      margin-top: 1rem;
+      text-align: center;
+      font-size: 0.9rem;
+      color: #94a3b8;
+    }
+    hr {
+      border-color: #334155;
+      margin: 1rem 0;
+    }
+    @media (max-width: 768px) {
+      .navbar {
+        flex-direction: column;
+      }
+      .nav-links {
+        gap: 1rem;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      .hero h1 {
+        font-size: 2rem;
+      }
+      .wizard-card {
+        padding: 1.5rem;
+      }
+      .step-title {
+        font-size: 1.4rem;
+      }
+      .option-btn {
+        font-size: 1rem;
+        padding: 0.9rem 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Header -->
+    <nav class="navbar">
+      <div class="logo">
+        <i class="fas fa-lightbulb"></i> منارة العلم
+      </div>
+      <ul class="nav-links">
+        <li><a href="#">الرئيسية</a></li>
+        <li><a href="#">اختباري الذكي</a></li>
+        <li><a href="#">دروسي</a></li>
+        <li><a href="#">تقارير الطالب</a></li>
+        <li><a href="#">تواصل</a></li>
+      </ul>
+      <div>
+        <a href="#" class="btn-outline"><i class="fas fa-user"></i> دخول</a>
+      </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero">
+      <h1>المنصة الأولى <span class="highlight">للمنهج المصري</span><br>بتقنيات الذكاء الاصطناعي</h1>
+      <p>معالج اختبارات تفاعلي، تدريب ذكي يحلل أخطاءك، ومراجعة ذكية تضمن التفوق. معلمك الشخصي موجود ٢٤ ساعة.</p>
+      <div class="stats-bar">
+        <div class="stat-item">
+          <div class="stat-number">ذكاء</div>
+          <div class="stat-label">اصطناعي متطور</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">+١٠٠</div>
+          <div class="stat-label">بنك أسئلة شامل</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">١٠٠٪</div>
+          <div class="stat-label">هدفنا التفوق</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">مصر</div>
+          <div class="stat-label">المنهج الرسمي</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features (AI etc.) -->
+    <div class="section-title">
+      <h2>تقنيات ذكية عشان تضمن التفوق</h2>
+      <p>مش مجرد بنوك أسئلة.. منصة متطورة تشتغل معاك خطوة بخطوة</p>
+    </div>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon"><i class="fas fa-robot"></i></div>
+        <h3>ذكاء اصطناعي يتابع تقدمك</h3>
+        <p>النظام يكتشف نقاط ضعفك تلقائياً ويوجهك للأسئلة اللي تحتاجها فعلاً. تدريب أذكى، مجهود أقل.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon"><i class="fas fa-star"></i></div>
+        <h3>من مبتدئ إلى عبقري</h3>
+        <p>نفتح لك أبواب التألق... نتدرج معك خطوة بخطوة حتى تصل إلى أعلى درجات الإتقان بكل ثقة.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon"><i class="fas fa-search"></i></div>
+        <h3>دور على أي سؤال</h3>
+        <p>أي سؤال من كتاب أو امتحان سابق.. اسأل الذكاء الاصطناعي عنه وهيعطيك الإجابة المعتمدة فوراً.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon"><i class="fas fa-chart-line"></i></div>
+        <h3>تقارير لأولياء الأمور</h3>
+        <p>حساب خاص لولي الأمر يشوف تقارير ابنه ونتائجه أول بأول. متابعة كاملة بدون تعقيد.</p>
+      </div>
+    </div>
+
+    <!-- Embedded Quiz Wizard -->
+    <div class="section-title">
+      <h2>🎯 معالج الاختبار الذكي</h2>
+      <p>اختر المسار والمرحلة والمادة وسيتم توليد اختبار تفاعلي حسب المنهج المصري</p>
+    </div>
+    <div class="wizard-wrapper">
+      <div class="wizard-card" id="wizardContainer">
+        <!-- المحتوى الديناميكي سيظهر هنا -->
+      </div>
+    </div>
+
+    <!-- Success stories mock -->
+    <div class="section-title">
+      <h2>قصص نجاح طلابنا</h2>
+    </div>
+    <div class="features-grid" style="grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));">
+      <div class="testimonial-card">
+        <i class="fas fa-user-graduate" style="font-size:2.5rem; color:var(--primary);"></i>
+        <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+        <p>"جبت الدرجة النهائية في الرياضيات بفضل التمارين الذكية"</p>
+        <div class="student-name">أحمد محمد</div>
+      </div>
+      <div class="testimonial-card">
+        <i class="fas fa-user-graduate" style="font-size:2.5rem; color:var(--primary);"></i>
+        <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+        <p>"الأحياء كانت أصعب مادة ودلوقتي بفهمها بسهولة"</p>
+        <div class="student-name">فاطمة علي</div>
+      </div>
+      <div class="testimonial-card">
+        <i class="fas fa-user-graduate" style="font-size:2.5rem; color:var(--primary);"></i>
+        <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+        <p>"التقارير الأسبوعية خلتني أتابع مستوايا أول بأول"</p>
+        <div class="student-name">يوسف إبراهيم</div>
+      </div>
+    </div>
+
+    <!-- Contact Support Channels -->
+    <div class="section-title">
+      <h2>نحن هنا لمساعدتك</h2>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-card">
+        <i class="fas fa-headset"></i>
+        <h4>حساب الإدارة</h4>
+        <p>للاستفسارات وحجز الدورات</p>
+        <a href="#" class="btn-outline" style="margin-top:1rem;">تواصل</a>
+      </div>
+      <div class="contact-card">
+        <i class="fas fa-user-cog"></i>
+        <h4>خدمة العملاء</h4>
+        <p>استفسارات عامة وشكاوى</p>
+        <a href="#" class="btn-outline" style="margin-top:1rem;">تواصل</a>
+      </div>
+      <div class="contact-card">
+        <i class="fas fa-tools"></i>
+        <h4>الدعم التقني</h4>
+        <p>مساعدة في حل المشاكل التقنية</p>
+        <a href="#" class="btn-outline" style="margin-top:1rem;">تواصل</a>
+      </div>
+    </div>
+
+    <footer class="footer">
+      <p>© 2025 منصة منارة العلم - جميع الحقوق محفوظة. مصممة للمنهج المصري 🇪🇬</p>
+    </footer>
+  </div>
+
+  <script>
+    // ----------------------------------------------
+    // قاعدة بيانات المواد حسب المسار (المرحلة الابتدائية فقط حالياً)
+    // نطبق المواصفات المطلوبة بالكامل: ابتدائي (1-3) و (4-6)
+    // وأنماط اللغات: عربي / لغات (إنجليزي - فرنساوي - اسباني - الماني)
+    // ----------------------------------------------
+    
+    function getMaterials_Grades1to3_Arabic() {
+        return ["اللغة العربية", "الرياضيات", "اللغة الإنجليزية", "التربية الدينية الإسلامية", "اكتشف"];
+    }
+    
+    function getMaterials_Grades1to3_Languages() {
+        return ["العربية", "Math", "English", "التربية الدينية الإسلامية", "English High Level", "Discover"];
+    }
+    
+    function getMaterials_Grades4to6_Arabic() {
+        return [
+            "اللغة العربية", "الرياضيات", "اللغة الإنجليزية", "العلوم", 
+            "الدراسات الاجتماعية", "التربية الدينية", "المهارات المهنية", 
+            "تكنولوجيا المعلومات ICT", "التربية الفنية"
+        ];
+    }
+    
+    function getMaterials_Grades4to6_Languages() {
+        return [
+            "English Language", "English Advanced", "Math", "Science", 
+            "اللغة العربية", "الدراسات الاجتماعية", "ICT", 
+            "المهارات المهنية", "التربية الدينية"
+        ];
+    }
+    
+    let wizardState = {
+        step: 'language',
+        languageChoice: null,
+        foreignLanguage: null,
+        gradeRange: null,
+        term: null,
+        selectedSubject: null,
+        materialsList: []
+    };
+    
+    const container = document.getElementById('wizardContainer');
+    
+    function computeMaterialsList() {
+        const isLanguage = (wizardState.languageChoice === 'languages');
+        const gradeRange = wizardState.gradeRange;
+        
+        if (!isLanguage) {
+            if (gradeRange === '1-3') return getMaterials_Grades1to3_Arabic();
+            else if (gradeRange === '4-6') return getMaterials_Grades4to6_Arabic();
+        } else {
+            if (gradeRange === '1-3') return getMaterials_Grades1to3_Languages();
+            else if (gradeRange === '4-6') return getMaterials_Grades4to6_Languages();
+        }
+        return [];
+    }
+    
+    function refreshMaterialsAndShowSubjectStep() {
+        wizardState.materialsList = computeMaterialsList();
+        wizardState.step = 'subject';
+        render();
+    }
+    
+    function handleTermChoice(termValue) {
+        wizardState.term = termValue;
+        refreshMaterialsAndShowSubjectStep();
+    }
+    
+    function renderTermStep() {
+        return `
+            <div class="step-badge">الخطوة 4 من 5</div>
+            <div class="step-title">📅 اختر الترم الدراسي</div>
+            <div class="options-grid">
+                <div class="option-btn" data-term="first">📖 الترم الأول</div>
+                <div class="option-btn" data-term="second">📘 الترم الثاني</div>
+            </div>
+            <button class="back-btn" id="backToGradeBtn">↩️ العودة إلى المرحلة الدراسية</button>
+            <div class="selection-info">المواد ستكون متطابقة في الترمين حسب المنهج المصري</div>
+        `;
+    }
+    
+    function renderGradeStep() {
+        let extraNote = wizardState.languageChoice === 'languages' 
+            ? "<div class='selection-info'>🌍 مسار اللغات: المواد تشمل اللغات الأجنبية المتقدمة حسب الصف.</div>"
+            : "<div class='selection-info'>📖 المسار العربي: المواد حسب المنهج المصري الرسمي.</div>";
+        return `
+            <div class="step-badge">الخطوة 3 من 5</div>
+            <div class="step-title">🏫 اختر المرحلة (الابتدائية)</div>
+            <div class="options-grid">
+                <div class="option-btn" data-grade="1-3">📚 الصفوف 1, 2, 3 ابتدائي</div>
+                <div class="option-btn" data-grade="4-6">📚 الصفوف 4, 5, 6 ابتدائي</div>
+            </div>
+            <button class="back-btn" id="backToForeignBtn">↩️ العودة إلى اختيار اللغة/العربي</button>
+            ${extraNote}
+        `;
+    }
+    
+    function renderForeignLanguageStep() {
+        return `
+            <div class="step-badge">الخطوة 2 من 5</div>
+            <div class="step-title">🌐 اختر اللغة الأجنبية الأولى</div>
+            <div class="options-grid">
+                <div class="option-btn" data-foreign="english">🇬🇧 English - الإنجليزية</div>
+                <div class="option-btn" data-foreign="french">🇫🇷 Français - الفرنسية</div>
+                <div class="option-btn" data-foreign="spanish">🇪🇸 Español - الإسبانية</div>
+                <div class="option-btn" data-foreign="german">🇩🇪 Deutsch - الألمانية</div>
+            </div>
+            <button class="back-btn" id="backToLangBtn">↩️ العودة إلى اختيار (عربي / لغات)</button>
+            <div class="selection-info">⭐ جميع مسارات اللغات (فرنسي/ألماني/إسباني) تتبع نفس هيكل المواد مثل الإنجليزية.</div>
+        `;
+    }
+    
+    function renderLanguageChoiceStep() {
+        return `
+            <div class="step-badge">الخطوة 1 من 5</div>
+            <div class="step-title">🎓 اختر نمط الدراسة</div>
+            <div class="options-grid">
+                <div class="option-btn" data-choice="arabic">📖 عربي (المنهج المصري الرسمي)</div>
+                <div class="option-btn" data-choice="languages">🌍 لغات (English, Français, Español, Deutsch)</div>
+            </div>
+            <div class="selection-info">سيتم توجيهك لاختيار التفاصيل بناءً على مسارك.</div>
+        `;
+    }
+    
+    function renderSubjectStep() {
+        const subjects = wizardState.materialsList;
+        if (!subjects.length) {
+            return `<div class="step-title">⚠️ حدث خطأ في تحميل المواد، يرجى العودة.</div><button class="back-btn" id="resetAllBtn">إعادة التشغيل</button>`;
+        }
+        
+        let subjectButtonsHtml = '';
+        subjects.forEach(sub => {
+            subjectButtonsHtml += `<div class="option-btn" data-subject="${sub.replace(/"/g, '&quot;')}">📖 ${sub}</div>`;
+        });
+        
+        let summary = `المسار: ${wizardState.languageChoice === 'arabic' ? 'عربي' : 'لغات'} | `;
+        if (wizardState.languageChoice === 'languages') {
+            let langMap = {english:'الإنجليزية', french:'الفرنسية', spanish:'الإسبانية', german:'الألمانية'};
+            summary += `اللغة: ${langMap[wizardState.foreignLanguage] || wizardState.foreignLanguage} | `;
+        }
+        summary += `المرحلة: الصفوف ${wizardState.gradeRange} | الترم: ${wizardState.term === 'first' ? 'الأول' : 'الثاني'}`;
+        
+        return `
+            <div class="step-badge">الخطوة 5 من 5 - اختر المادة</div>
+            <div class="step-title">📚 اختر المادة لبدء الاختبار</div>
+            <div class="selection-info" style="margin-bottom:15px;">${summary}</div>
+            <div class="options-grid" id="subjectsGrid">
+                ${subjectButtonsHtml}
+            </div>
+            <button class="back-btn" id="backToTermBtn">↩️ العودة إلى الترم</button>
+            <button class="reset-btn" id="resetAllBtn" style="margin-top:10px; background:#334155;">🔄 إعادة تشغيل المعالج</button>
+        `;
+    }
+    
+    function startExamWithSubject() {
+        const subject = wizardState.selectedSubject;
+        const termText = (wizardState.term === 'first') ? 'الترم الأول' : 'الترم الثاني';
+        const gradeText = wizardState.gradeRange;
+        let langDetails = '';
+        if (wizardState.languageChoice === 'languages') {
+            const foreignMap = {english:'الإنجليزية', french:'الفرنسية', spanish:'الإسبانية', german:'الألمانية'};
+            langDetails = `، اللغة الأجنبية: ${foreignMap[wizardState.foreignLanguage]}`;
+        }
+        const msg = `🚀 جاري تجهيز اختبار "${subject}"\n📌 المرحلة: ابتدائي (${gradeText})\n📆 ${termText}\n${langDetails}\n\n✔️ سيتم تحميل الأسئلة التفاعلية وفق المنهج المصري.`;
+        alert(msg);
+        console.log(`بدء الاختبار: ${subject}, مسار: ${wizardState.languageChoice}, الترم: ${wizardState.term}, الصفوف: ${gradeText}`);
+    }
+    
+    function handleContainerClick(e) {
+        const target = e.target.closest('.option-btn');
+        const backLang = e.target.closest('#backToLangBtn');
+        const backForeign = e.target.closest('#backToForeignBtn');
+        const backGrade = e.target.closest('#backToGradeBtn');
+        const backTerm = e.target.closest('#backToTermBtn');
+        const resetBtn = e.target.closest('#resetAllBtn');
+        
+        if (resetBtn) {
+            resetWizard();
+            return;
+        }
+        
+        if (backLang && wizardState.step === 'arabicOrForeignDetail') {
+            wizardState.step = 'language';
+            wizardState.languageChoice = null;
+            wizardState.foreignLanguage = null;
+            render();
+            return;
+        }
+        if (backForeign && wizardState.step === 'gradeLevel') {
+            if (wizardState.languageChoice === 'languages') {
+                wizardState.step = 'arabicOrForeignDetail';
+            } else {
+                wizardState.step = 'language';
+            }
+            render();
+            return;
+        }
+        if (backGrade && wizardState.step === 'term') {
+            wizardState.step = 'gradeLevel';
+            render();
+            return;
+        }
+        if (backTerm && wizardState.step === 'subject') {
+            wizardState.step = 'term';
+            render();
+            return;
+        }
+        
+        if (target && target.dataset) {
+            if (wizardState.step === 'language') {
+                const choice = target.dataset.choice;
+                if (choice === 'arabic') {
+                    wizardState.languageChoice = 'arabic';
+                    wizardState.step = 'gradeLevel';
+                    render();
+                } else if (choice === 'languages') {
+                    wizardState.languageChoice = 'languages';
+                    wizardState.step = 'arabicOrForeignDetail';
+                    render();
+                }
+                return;
+            }
+            
+            if (wizardState.step === 'arabicOrForeignDetail') {
+                const foreignVal = target.dataset.foreign;
+                if (foreignVal) {
+                    wizardState.foreignLanguage = foreignVal;
+                    wizardState.step = 'gradeLevel';
+                    render();
+                }
+                return;
+            }
+            
+            if (wizardState.step === 'gradeLevel') {
+                const gradeVal = target.dataset.grade;
+                if (gradeVal) {
+                    wizardState.gradeRange = gradeVal;
+                    wizardState.step = 'term';
+                    render();
+                }
+                return;
+            }
+            
+            if (wizardState.step === 'term') {
+                const termVal = target.dataset.term;
+                if (termVal === 'first' || termVal === 'second') {
+                    handleTermChoice(termVal);
+                }
+                return;
+            }
+            
+            if (wizardState.step === 'subject') {
+                const subjectName = target.dataset.subject;
+                if (subjectName) {
+                    wizardState.selectedSubject = subjectName;
+                    startExamWithSubject();
+                }
+                return;
+            }
+        }
+    }
+    
+    function resetWizard() {
+        wizardState = {
+            step: 'language',
+            languageChoice: null,
+            foreignLanguage: null,
+            gradeRange: null,
+            term: null,
+            selectedSubject: null,
+            materialsList: []
+        };
+        render();
+    }
+    
+    function render() {
+        if (!container) return;
+        let html = '';
+        switch (wizardState.step) {
+            case 'language':
+                html = renderLanguageChoiceStep();
+                break;
+            case 'arabicOrForeignDetail':
+                html = renderForeignLanguageStep();
+                break;
+            case 'gradeLevel':
+                html = renderGradeStep();
+                break;
+            case 'term':
+                html = renderTermStep();
+                break;
+            case 'subject':
+                html = renderSubjectStep();
+                break;
+            default:
+                html = renderLanguageChoiceStep();
+        }
+        container.innerHTML = html;
+    }
+    
+    function attachEvents() {
+        container.removeEventListener('click', handleContainerClick);
+        container.addEventListener('click', handleContainerClick);
+    }
+    
+    function init() {
+        resetWizard();
+        attachEvents();
+    }
+    
+    init();
+  </script>
+</body>
+</html>
